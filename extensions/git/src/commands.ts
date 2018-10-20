@@ -1430,8 +1430,9 @@ export class CommandCenter {
 				.map(ref => new BranchDeleteItem(ref));
 
 			const placeHolder = localize('select branch to delete', 'Select a branch to delete');
-			const choice = await window.showQuickPick<BranchDeleteItem>(heads, { placeHolder });
+			const choices = await window.showQuickPick<BranchDeleteItem>(heads, { placeHolder, canPickMany: true });
 
+			// SJM TODO: Update to deal with multiple choices.
 			if (!choice || !choice.branchName) {
 				return;
 			}
